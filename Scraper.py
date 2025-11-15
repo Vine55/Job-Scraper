@@ -6,7 +6,7 @@ import time
 # App Configuration
 # -----------------------
 ctk.set_appearance_mode("dark")      # "light" or "dark"
-ctk.set_default_color_theme("green")  # "blue", "green", "dark-blue"
+ctk.set_default_color_theme("blue")  # "blue", "green", "dark-blue"
 
 
 class JobScraperUI(ctk.CTk):
