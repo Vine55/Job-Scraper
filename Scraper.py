@@ -212,3 +212,5 @@ class JobScraperUI(ctk.CTk):
 if __name__ == "__main__":
     app = JobScraperUI()
     app.mainloop()
+
+#Testing
