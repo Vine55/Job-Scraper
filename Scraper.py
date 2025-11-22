@@ -1,9 +1,66 @@
+"""
+Important ID's and classnames:
+    Indeed:
+        Job title input id = text-input-what
+        Location input id = text-input-where
+
+
+"""
+
+
+import undetected_chromedriver as uc
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import customtkinter as ctk
 import threading
-import time
+import time, random
 from datetime import datetime
 import csv
 from tkinter import filedialog, messagebox
+
+#-----------------
+# Web Scraper
+#-----------------
+def delay(min=1, max=3):
+    time.sleep(random.uniform(min, max))
+
+
+def createDriver():
+    options = uc.ChromeOptions()
+
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+    options.add_argument(f'--user-agent={user_agent}')
+    options.add_argument("--window-size=1080,1080")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+
+    driver = uc.Chrome(options=options)
+    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    return driver
+
+def scrape(web, job, location):
+    if web=="indeed":
+        indeedScrape(job, location)
+
+def indeedScrape(job, location):
+    print(driver, " is running")
+    driver.get("https://ng.indeed.com/?r=us")
+    delay()
+    driver.get(f"https://ng.indeed.com/jobs?q={job}&l={location}&from=searchOnHP")
+
+    input("Press Enter to close Browser: ")
+    driver.quit()
+
+
+
+
+
+
+
+
+
+
+
 
 # -----------------------
 # App Configuration
@@ -211,6 +268,9 @@ class JobScraperUI(ctk.CTk):
 # Run the app
 if __name__ == "__main__":
     app = JobScraperUI()
-    app.mainloop()
+    # app.mainloop()
+
+driver = createDriver()
+scrape('indeed', "Web Developer", "Nigeria")
 
 #Testing
