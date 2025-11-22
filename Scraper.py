@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox
 # -----------------------
 # App Configuration
 # -----------------------
-ctk.set_appearance_mode("dark")      # "light" or "dark"
+ctk.set_appearance_mode("system")      # "light" or "dark"
 ctk.set_default_color_theme("blue")  # "blue", "green", "dark-blue"
 
 
